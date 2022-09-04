@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: ovdi-deployment
+  labels:
+    app: ovdi-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ovdi-app
+    template:
+      metadata:
+        labels:
+          app: ovdi-app
+      spec:
+        containers:
+        - name: ovdi-container
+          image: ovdi/website
+          ports:
+          - containerPort: 80
