@@ -14,11 +14,11 @@ pipeline {
             steps {
                     git 'https://github.com/aristidejou/capstone2.git'
             }
-        
+        }
         
         stage("3-Dockerfile Build"){                                     
                        steps{
-                           
+                           sh ' docker login -u ovdi'
                           sh' sudo docker rm -f $(sudo docker ps -a -q)'
                        //sh 'sudo docker rm -f ovdi/website'
                      //   sh 'sudo docker rmi -f ovdi/website'
