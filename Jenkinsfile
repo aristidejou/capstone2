@@ -1,12 +1,12 @@
 pipeline {
-    agent {label "k8s-node"} //this will copy everydddtaasasAahing from git to worddsddkfdsfder node k8s
+    agent {label "k8s-node"} //this will copy everydddtaasasAahing from gitj to worddsddkfdsfder node k8s
     environment{
         DOCKERHUB_CREDENTIALS = credentials('docker-hub-ovdi')
     }
      stages {
         stage('1-Release Date') {
             steps {
-                    sh 'echo date'
+                    sh ' date'
             }
         }
          
@@ -19,18 +19,15 @@ pipeline {
         stage('3-Docker Build') {
            steps {
             sh ' sudo docker build   /home/ubuntu/jenkins/workspace/pipeline/ -t ovdi/website'
+                sh' sudo chmod 777 /var/run/docker.sock'
+                withCredentials([string(credentialsId: 'dockerhubpwd', variable: 'dockerhubpwd')]) {
+                 sh 'docker login -u ovdi -p ${dockerhubpwd}'
+                }
+                sh ' docker push ovdi/website'
           }
        }
          
-      stage('-login') {
-            steps {
-                
-               sh' sudo chmod 777 /var/run/docker.sock'
-                //withCredentials([string(credentialsId: 'dockerhubpwd', variable: 'dockerhubpwd')]) {
-                  //    sh 'docker login -u ovdi -p ${dockerhubpwd}'}
-  sh ' docker push ovdi/website'
-            }
-        }
+    
          
         stage("-Docker Push"){                                     
                        steps{
