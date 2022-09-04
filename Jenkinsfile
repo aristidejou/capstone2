@@ -18,7 +18,7 @@ pipeline {
          
         stage('3-Docker Build') {
            steps {
-            sh ' docker build  -t ovdi/website /home/ubuntu/jenkins/workspace/pipeline/'
+            sh ' docker build  -t  /home/ubuntu/jenkins/workspace/pipeline/ ovdi/website'
           }
        }
          
