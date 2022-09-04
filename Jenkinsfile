@@ -25,7 +25,7 @@ pipeline {
       stage('1-login') {
             steps {
                   withCredentials([string(credentialsId: 'dockerhubpwd', variable: 'dockerhubpwd')]) {
-                      docker login -u ovdi -p ${dockerhubpwd}
+                      sh 'docker login -u ovdi -p ${dockerhubpwd}'
 }
   sh ' docker push ovdi/website'
             }
