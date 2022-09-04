@@ -32,7 +32,15 @@ pipeline {
          stage('4-Deployment/replicas') {
                             
               steps {
-                                        sh ' kubectl apply -f ovdi-deploy.yaml'
+                  script{
+                                    try{
+                                        sh 'sudo kubectl create -f ovdi-deploy.yaml'
+                                      //  sh 'sudo kubectl create -f ms-deployment.yaml'
+                                    }catch (error){
+                                       // sh 'sudo kubectl apply -f ms-service-nodeport.yaml'
+                                       // sh 'sudo kubectl apply -f ms-deployment.yaml'
+                                    }
+                            }
               }
           }    
          
