@@ -18,6 +18,7 @@ pipeline {
         
         stage("3-Dockerfile Build"){                                     
                        steps{
+                           sh 'sudo docker login -u ovdi'
                           sh' sudo docker rm -f $(sudo docker ps -a -q)'
                        //sh 'sudo docker rm -f ovdi/website'
                      //   sh 'sudo docker rmi -f ovdi/website'
