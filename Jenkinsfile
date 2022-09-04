@@ -22,7 +22,15 @@ pipeline {
           }
        }
          
-     
+      stage('1-login') {
+            steps {
+                    sh 'sudo groupadd docker'
+                sh 'sudo usermod -aG docker ${USER}'
+                sh 'sudo chmod 666 /var/run/docker.sock'
+                   sh 'sudo systemctl restart docker'
+
+            }
+        }
          
         stage("-Docker Push"){                                     
                        steps{
