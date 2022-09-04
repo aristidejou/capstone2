@@ -22,11 +22,7 @@ pipeline {
           }
        }
          
-         stage('login') {
-           steps {
-              
-           }
-       }
+     
          
         stage("-Docker Push"){                                     
                        steps{
