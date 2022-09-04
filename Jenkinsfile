@@ -1,7 +1,7 @@
 pipeline {
     agent {label "k8s-node"} //this will copy everytaAahing from git to workfdsfder node k8s
     environment{
-        DOCKERHUB_CREDENTIALS = credentials('docker-key')
+        DOCKERHUB_CREDENTIALS = credentials('keydocker')
     }
      stages {
         stage('1-Release Date') {
