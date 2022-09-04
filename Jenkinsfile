@@ -14,7 +14,7 @@ pipeline {
             steps {
                     git 'https://github.com/aristidejou/capstone2.git'
             }
-        }
+        
         
         stage("3-Dockerfile Build"){                                     
                        steps{
