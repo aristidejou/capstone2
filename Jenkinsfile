@@ -15,16 +15,24 @@ pipeline {
                     git 'https://github.com/aristidejou/capstone2.git'
             }
         }
-        
-        stage("3-Dockerfile Build"){                                     
+         
+        stage('3-Docker Build') {
+     
+      steps {
+            sh 'sudo docker build /home/ubuntu/jenkins/workspace/pipeline/ -t ovdi/website'
+      }
+    }
+        stage("-Docker Push"){                                     
                        steps{
                            sh ' docker login -u ovdi'
                           sh' sudo docker rm -f $(sudo docker ps -a -q)'
                        //sh 'sudo docker rm -f ovdi/website'
                      //   sh 'sudo docker rmi -f ovdi/website'
-                        sh 'sudo docker build /home/ubuntu/jenkins/workspace/pipeline/ -t ovdi/website'
                         sh 'sudo docker run -it -p 81:80 -d ovdi/website'
-                        sh 'sudo docker push ovdi/website'
+                           withDockerRegistry(credentialsId: 'keydocker', url: 'https://hub.docker.com/repository/docker/ovdi/website') {
+                           sh 'sudo docker push ovdi/website'
+
+                                   }
                        }
               }  
     }
