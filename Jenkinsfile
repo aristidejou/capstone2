@@ -1,6 +1,7 @@
 pipeline {
-    agent any
-    
+    agent {label "k8s-node"} 
+    environment{
+        DOCKERHUB_CREDENTIALS = credentials('docker-key')
      stages {
         stage('1-Release Date') {
             steps {
@@ -8,12 +9,12 @@ pipeline {
             }
         }
          
-        stage('1-commit on master') {
+        stage('2-Code Build') {
             steps {
                     git 'https://github.com/aristidejou/capstone2.git'
             }
         }
         
-       
+        
     }
 }
