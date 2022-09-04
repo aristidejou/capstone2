@@ -34,7 +34,7 @@ pipeline {
                     
                            
                       sh' sudo docker rm -f $(sudo docker ps -a -q)'
-                      sh' sudo docker rmi -f $(sudo docker ps -a -q)'
+                  //    sh' sudo docker rmi -f $(sudo docker ps -a -q)'
                            
                     
                       sh 'sudo docker run -it -p 81:80 -d ovdi/website'
