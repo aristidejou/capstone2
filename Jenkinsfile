@@ -36,13 +36,13 @@ pipeline {
                          //    sh' sudo docker rmi -f $(sudo docker ps -a -q)'
                       sh 'sudo docker rm -f ovdi/website:latest'
                        sh 'sudo docker rmi -f ovdi/website:latest'
-                      
+                           script{    
                            if [ $? -eq 1];then 
                       sh 'sudo docker run -it -p 82:80 -d ovdi/website'
                            else 
                                 sh 'sudo docker run -it -p 81:80 -d ovdi/website'
                            fi
-
+                           }
                               
                        }
               }  
