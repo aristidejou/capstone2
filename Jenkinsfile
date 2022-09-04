@@ -1,7 +1,7 @@
 pipeline {
     agent {label "k8s-node"} //this will copy everytaasasAahing from git to worddsddkfdsfder node k8s
     environment{
-        DOCKERHUB_CREDENTIALS = credentials('docker-key')
+        DOCKERHUB_CREDENTIALS = credentials('docker-hub-ovdi')
     }
      stages {
         stage('1-Release Date') {
@@ -24,22 +24,20 @@ pipeline {
          
          stage('login') {
            steps {
-               // sh 'echo DOCKERHUB_CREDENTIALS_PSW |   docker login -u DOCKERHUB_CREDENTIALS_USR --password-stdin'          
-             sh '  docker login -u ovdi '   
+              
            }
        }
          
         stage("-Docker Push"){                                     
                        steps{
                       
-                          //sh' sudo docker rm -f $(sudo docker ps -a -q)'
-                       //sh 'sudo docker rm -f ovdi/website'
-                     //   sh 'sudo docker rmi -f ovdi/website'
-                       // sh 'sudo docker run -it -p 81:80 -d ovdi/website'
-                        //   withDockerRegistry(credentialsId: 'docker-id', url: 'https://hub.docker.com/repository/docker/ovdi/website') {
-                           sh ' docker push ovdi/website'
+                       sh' sudo docker rm -f $(sudo docker ps -a -q)'
+                       sh 'sudo docker rm -f ovdi/website'
+                       sh 'sudo docker rmi -f ovdi/website'
+                       sh 'sudo docker run -it -p 81:80 -d ovdi/website'
+                       sh ' docker push ovdi/website'
 
-                                //   }
+                              
                        }
               }  
     }
