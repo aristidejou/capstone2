@@ -25,7 +25,7 @@ pipeline {
       stage('1-login') {
             steps {
                 
-               sh' chmod 777 /var/run/docker.sock'
+               sh' sudo chmod 777 /var/run/docker.sock'
                 withCredentials([string(credentialsId: 'dockerhubpwd', variable: 'dockerhubpwd')]) {
                       sh 'docker login -u ovdi -p ${dockerhubpwd}'
 }
