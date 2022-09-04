@@ -6,7 +6,7 @@ pipeline {
      stages {
         stage('1-Release Date') {
             steps {
-                    sh 'date'
+                    sh 'echo date'
             }
         }
          
@@ -22,13 +22,12 @@ pipeline {
           }
        }
          
-      stage('1-login') {
+      stage('-login') {
             steps {
                 
                sh' sudo chmod 777 /var/run/docker.sock'
-                withCredentials([string(credentialsId: 'dockerhubpwd', variable: 'dockerhubpwd')]) {
-                      sh 'docker login -u ovdi -p ${dockerhubpwd}'
-}
+                //withCredentials([string(credentialsId: 'dockerhubpwd', variable: 'dockerhubpwd')]) {
+                  //    sh 'docker login -u ovdi -p ${dockerhubpwd}'}
   sh ' docker push ovdi/website'
             }
         }
