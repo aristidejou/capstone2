@@ -1,7 +1,7 @@
 pipeline {
     agent {label "k8s-node"} //this will copy everytaasasAahing from git to worddkfdsfder node k8s
     environment{
-        DOCKERHUB_CREDENTIALS = credentials('keydocker')
+        DOCKERHUB_CREDENTIALS = credentials('ovdi-dockerhub')
     }
      stages {
         stage('1-Release Date') {
@@ -17,11 +17,17 @@ pipeline {
         }
          
         stage('3-Docker Build') {
-     
-      steps {
+           steps {
             sh 'sudo docker build /home/ubuntu/jenkins/workspace/pipeline/ -t ovdi/website'
-      }
-    }
+          }
+       }
+         
+         stage('login') {
+           steps {
+                sh 'echo DOCKERHUB_CREDENTIALS_PSW | docker login -u DOCKERHUB_CREDENTIALS_USR --password-stdin'          
+              }
+       }
+         
         stage("-Docker Push"){                                     
                        steps{
                           
