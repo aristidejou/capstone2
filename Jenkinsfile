@@ -21,7 +21,7 @@ pipeline {
                         sh 'sudo docker rm -f ovdi/website'
                         sh 'sudo docker rmi -f ovdi/website'
                         sh 'sudo docker build /home/ubuntu/jenkins/workspace/pipeline/ -t ovdi/website'
-                        sh 'sudo docker run -it -p 80:80 -d ovdi/website'
+                        sh 'sudo docker run -it -p 81:80 -d ovdi/website'
                         sh 'sudo docker push ovdi/website'
                        }
               }  
