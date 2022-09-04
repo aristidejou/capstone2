@@ -24,13 +24,14 @@ pipeline {
          
          stage('login') {
            steps {
-                sh 'echo DOCKERHUB_CREDENTIALS_PSW |   docker login -u DOCKERHUB_CREDENTIALS_USR --password-stdin'          
-              }
+               // sh 'echo DOCKERHUB_CREDENTIALS_PSW |   docker login -u DOCKERHUB_CREDENTIALS_USR --password-stdin'          
+             sh '  docker login -u ovdi '   
+           }
        }
          
         stage("-Docker Push"){                                     
                        steps{
-                        sh '  docker login -u ovdi '
+                      
                           //sh' sudo docker rm -f $(sudo docker ps -a -q)'
                        //sh 'sudo docker rm -f ovdi/website'
                      //   sh 'sudo docker rmi -f ovdi/website'
@@ -42,7 +43,7 @@ pipeline {
                        }
               }  
     }
-    
+
     post {
            always {
                     sh 'docker logout'
