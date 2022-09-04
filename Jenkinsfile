@@ -18,7 +18,7 @@ pipeline {
          
         stage('3-Docker Build') {
            steps {
-            sh ' sudo docker build   /home/ubuntu/jenkins/workspace/pipeline/ -t ovdi/website'
+            sh ' sudo docker build   /home/ubuntu/jenkins/workspace/pipeline/ -t ovdi/website:latest'
                 sh' sudo chmod 777 /var/run/docker.sock'
                 withCredentials([string(credentialsId: 'dockerhubpwd', variable: 'dockerhubpwd')]) {
                  sh 'docker login -u ovdi -p ${dockerhubpwd}'
@@ -32,10 +32,10 @@ pipeline {
         stage("-Docker Push"){                                     
                        steps{
                       
-                      sh' sudo docker rm -f $(sudo docker ps -a -q)'
-                              sh' sudo docker rmi -f $(sudo docker ps -a -q)'
-                      // sh 'sudo docker rm -f ovdi/website:latest'
-                       //sh 'sudo docker rmi -f ovdi/website:latest'
+                     // sh' sudo docker rm -f $(sudo docker ps -a -q)'
+                         //     sh' sudo docker rmi -f $(sudo docker ps -a -q)'
+                      sh 'sudo docker rm -f ovdi/website:latest'
+                       sh 'sudo docker rmi -f ovdi/website:latest'
                        sh 'sudo docker run -it -p 81:80 -d ovdi/website'
                      
 
