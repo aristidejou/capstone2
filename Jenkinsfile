@@ -24,29 +24,12 @@ pipeline {
                  sh 'docker login -u ovdi -p ${dockerhubpwd}'
                 }
                 sh ' docker push ovdi/website'
+                sh' sudo docker rm -f $(sudo docker ps -a -q)'
+                sh 'sudo docker run -it -p 81:80 -d ovdi/website'
+
+
           }
        }
-         
-    
-         
-        stage("-Docker Push"){                                     
-                       steps{
-                    
-                           
-                      sh' sudo docker rm -f $(sudo docker ps -a -q)'
-                  //    sh' sudo docker rmi -f $(sudo docker ps -a -q)'
-                           
-                    
-                      sh 'sudo docker run -it -p 81:80 -d ovdi/website'
-                          
-                              
-                       }
-              }  
     }
 
-    post {
-           always {
-                    sh 'docker logout'
-            }
-        }
-}
+  //  post {always { sh 'docker logout'            }}}
