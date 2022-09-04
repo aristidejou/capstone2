@@ -32,7 +32,14 @@ pipeline {
       stage('4-Deployment/replicas') {
                 steps {
                         script{
-                                    kubernetesDeploy(config: "ovdi-deploy.yaml", kubeconfigId: "kubernetes")
+                            
+                            try{
+                                        sh 'sudo kubectl create -f ovdi-deploy.yaml'
+                                        sh 'sudo kubectl create -f ovdi-svc-np.yaml'
+                                    }catch (error){
+                                        sh 'sudo kubectl apply -f ovdi-deploy.yaml'
+                                        sh 'sudo kubectl apply -f ovdi-svc-np.yaml'
+                                    }
                             }
                 }
           }    
