@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-service
+  labels: 
+    app: ovdi-app
+spec:
+  selector:
+    app: ovdi-app 
+  type: NodePort
+  ports:
+  - nodeport: 30008
+    port: 80
+    targetPort: 80  
+    
