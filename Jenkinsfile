@@ -29,7 +29,7 @@ pipeline {
                        //sh 'sudo docker rm -f ovdi/website'
                      //   sh 'sudo docker rmi -f ovdi/website'
                         sh 'sudo docker run -it -p 81:80 -d ovdi/website'
-                           withDockerRegistry(credentialsId: 'dockerkey', url: 'https://hub.docker.com/repository/docker/ovdi/website') {
+                           withDockerRegistry(credentialsId: 'docker-id', url: 'https://hub.docker.com/repository/docker/ovdi/website') {
                            sh 'sudo docker push ovdi/website'
 
                                    }
