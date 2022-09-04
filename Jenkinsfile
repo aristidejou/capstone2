@@ -24,11 +24,10 @@ pipeline {
          
       stage('1-login') {
             steps {
-                    sh 'sudo groupadd docker'
-                sh 'sudo usermod -aG docker ${USER}'
-                sh 'sudo chmod 666 /var/run/docker.sock'
-                   sh 'sudo systemctl restart docker'
-
+                  withCredentials([string(credentialsId: 'dockerhubpwd', variable: 'dockerhubpwd')]) {
+                      docker login -u ovdi -p ${dockerhubpwd}
+}
+  sh ' docker push ovdi/website'
             }
         }
          
@@ -39,7 +38,7 @@ pipeline {
                        sh 'sudo docker rm -f ovdi/website'
                        sh 'sudo docker rmi -f ovdi/website'
                        sh 'sudo docker run -it -p 81:80 -d ovdi/website'
-                       sh ' docker push ovdi/website'
+                     
 
                               
                        }
