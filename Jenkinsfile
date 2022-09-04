@@ -18,20 +18,20 @@ pipeline {
          
         stage('3-Docker Build') {
            steps {
-            sh 'sudo docker build /home/ubuntu/jenkins/workspace/pipeline/ -t ovdi/website'
+            sh 'sudo docker build  -t ovdi/website /home/ubuntu/jenkins/workspace/pipeline/'
           }
        }
          
          stage('login') {
            steps {
-                sh 'echo DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u DOCKERHUB_CREDENTIALS_USR --password-stdin'          
+                sh 'echo DOCKERHUB_CREDENTIALS_PSW |  docker login -u DOCKERHUB_CREDENTIALS_USR --password-stdin'          
               }
        }
          
         stage("-Docker Push"){                                     
                        steps{
                           
-                          sh' sudo docker rm -f $(sudo docker ps -a -q)'
+                          //sh' sudo docker rm -f $(sudo docker ps -a -q)'
                        //sh 'sudo docker rm -f ovdi/website'
                      //   sh 'sudo docker rmi -f ovdi/website'
                        // sh 'sudo docker run -it -p 81:80 -d ovdi/website'
