@@ -1,5 +1,5 @@
 pipeline {
-    agent {label "k8s-node"} 
+    agent {label "k8s-node"} //this will copy everything from git to worker node k8s
     environment{
         DOCKERHUB_CREDENTIALS = credentials('docker-key')
     }
@@ -16,6 +16,14 @@ pipeline {
             }
         }
         
-        
+        stage("3-Dockerfile Build"){                                     
+                       steps{
+                       // sh 'sudo docker rm -f $(sudo docker ps -a -q)'
+                       // sh 'sudo docker rmi -f $(sudo docker  -a -q)'
+                        sh 'sudo docker build /home/ubuntu/jenkins/workspace/pipeline/ -t ovdi/website'
+                        sh 'sudo docker run -it -p 80:80 -d ovdi/website'
+                        sh 'sudo docker push ovdi/website'
+                       }
+              }  
     }
 }
