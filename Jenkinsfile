@@ -19,10 +19,7 @@ pipeline {
         stage("3-Dockerfile Build"){                                     
                        steps{
                        sh 'sudo docker rm -f ovdi/website'
-                       // sh 'sudo docker rmi -f $(sudo docker  -a -q)'
-                          
                         sh 'sudo docker build /home/ubuntu/jenkins/workspace/pipeline/ -t ovdi/website'
-                           
                         sh 'sudo docker run -it -p 80:80 -d ovdi/website'
                         sh 'sudo docker push ovdi/website'
                        }
