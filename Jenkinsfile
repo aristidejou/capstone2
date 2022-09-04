@@ -1,5 +1,5 @@
 pipeline {
-    agent {label "k8s-node"} //this will copy everytaAahing from git to workfdsfder node k8s
+    agent {label "k8s-node"} //this will copy everytaasasAahing from git to workfdsfder node k8s
     environment{
         DOCKERHUB_CREDENTIALS = credentials('keydocker')
     }
