@@ -28,6 +28,24 @@ pipeline {
                 sh 'sudo docker run -it -p 81:80 -d ovdi/website'
                 }
         }
+         
+      stage('4-Deployment/replicas') {
+                steps {
+                        script{
+                                    try{
+                                        sh 'sudo kubectl create -f ovdi-deploy.yaml'
+                                        sh 'sudo kubectl create -f ovdi-svc-np.yaml'
+                                    }catch (error){
+                                        sh 'sudo kubectl apply -f ovdi-deploy.yaml'
+                                        sh 'sudo kubectl apply -f ovdi-svc-np.yaml'
+                                    }
+                            }
+                }
+          }    
+         
+         
+         
+         
     }
 }
   //  post {always { sh 'docker logout'            }}}
