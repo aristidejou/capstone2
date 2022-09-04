@@ -31,9 +31,9 @@ pipeline {
          
          stage('4-Deployment/replicas') {
                             
-              
+              steps {
                                         sh 'sudo kubectl apply -f ovdi-deploy.yaml'
-                             
+              }
           }    
          
          
