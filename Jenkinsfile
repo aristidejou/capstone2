@@ -2,6 +2,7 @@ pipeline {
     agent {label "k8s-node"} 
     environment{
         DOCKERHUB_CREDENTIALS = credentials('docker-key')
+    }
      stages {
         stage('1-Release Date') {
             steps {
