@@ -9,7 +9,7 @@ spec:
     app: ovdi-app 
   type: NodePort
   ports:
-  - nodeport: 30008
+  - nodePort: 30008
     port: 80
     targetPort: 80  
     
