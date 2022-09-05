@@ -34,9 +34,9 @@ pipeline {
               steps {
                   script{
                                    
-                                        sh 'sudo kubectl create -f ovdi-deploy.yaml'
-                                     //  sh 'sudo kubectl create -f ovdi-svc-np.yaml'
+                                     sh 'sudo kubectl create -f ovdi-svc-np.yaml'
                                     
+                                        sh 'sudo kubectl create -f ovdi-deploy.yaml'
                             }
               }
           }    
