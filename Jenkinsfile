@@ -32,9 +32,9 @@ pipeline {
          stage('4-Deployment/replicas') {
                             
              steps {      
-                                     sh 'sudo kubectl create -f ovdi-svc-np.yaml'
+                                     sh 'sudo kubectl apply -f ovdi-svc-np.yaml'
                                     
-                                        sh 'sudo kubectl create -f ovdi-deploy.yaml'
+                                        sh 'sudo kubectl apply -f ovdi-deploy.yaml'
                          
               }
           }    
