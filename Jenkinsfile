@@ -35,7 +35,7 @@ pipeline {
                   script{
                                     try{
                                         sh 'sudo kubectl create -f ovdi-deploy.yaml'
-                                       sh 'sudo kubectl create -f ovdi-svc-np.yaml'
+                                     //  sh 'sudo kubectl create -f ovdi-svc-np.yaml'
                                     }catch (error){
                                        // sh 'sudo kubectl apply -f ms-service-nodeport.yaml'
                                        // sh 'sudo kubectl apply -f ms-deployment.yaml'
