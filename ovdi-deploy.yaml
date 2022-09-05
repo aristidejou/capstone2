@@ -5,7 +5,7 @@ metadata:
   labels:
     app: ovdi-app
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       app: ovdi-app
